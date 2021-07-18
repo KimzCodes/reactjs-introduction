@@ -1,11 +1,10 @@
 import React from 'react';
 import styles from './Card.module.css';
 
-const Card = ({ namesList, deleteFunc }) => {
-  const cards = namesList.map(({ name, age, address, phone, type, id }) => (
+const Card = ({ id, name, age, address, phone, type, deleteFunc }) => {
+  return (
     <div
       className={styles.cardWrapper}
-      key={id}
       style={{ backgroundColor: type === 'girl' ? 'pink' : 'green' }}
     >
       <div>Name:{name}</div>
@@ -19,8 +18,7 @@ const Card = ({ namesList, deleteFunc }) => {
         x
       </div>
     </div>
-  ));
-  return <div>{cards}</div>;
+  );
 };
 
 export default Card;
