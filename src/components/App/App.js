@@ -8,30 +8,44 @@ const App = () => {
   const [filter, setFilter] = useState('');
   const [state, setState] = useState([
     {
+      id: 1,
       name: 'kareem',
       age: 31,
       adrress: 'hadyk el aharm',
       phone: '01010987123',
+      type: 'boy',
     },
     {
+      id: 2,
+      name: 'farah',
+      age: 24,
+      adrress: 'hadyk el aharm',
+      phone: '01010987234',
+      type: 'girl',
+    },
+    {
+      id: 3,
       name: 'ahmed',
       age: 24,
       adrress: 'hadyk el aharm',
       phone: '01010987234',
+      type: 'boy',
     },
     {
-      name: 'mena',
+      id: 4,
+      name: 'mariam',
       age: 20,
       adrress: 'fayesl',
       phone: '01010932123',
+      type: 'girl',
     },
   ]);
 
-  const deleteHandler = (e, clickedIdx) => {
+  const deleteHandler = (e, selectedID) => {
     // const deleteOberation = state.filter((el, idx) => idx !== clickedIdx);
     // setState(deleteOberation);
     setState((prevState) => {
-      return prevState.filter((el, idx) => idx !== clickedIdx);
+      return prevState.filter((el) => el.id !== selectedID);
     });
   };
 
@@ -62,11 +76,7 @@ const App = () => {
       <div className={cardToggle ? 'show' : 'hide'}>
         <Filter filteration={filterNames} />
 
-        <Card
-          namesList={namesHandler()}
-          type='men'
-          deleteFunc={deleteHandler}
-        />
+        <Card namesList={namesHandler()} deleteFunc={deleteHandler} />
       </div>
     </div>
   );
