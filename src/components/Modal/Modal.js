@@ -3,22 +3,24 @@ import ReactDom from 'react-dom';
 
 import styles from './Modal.module.css';
 
-const Backdrop = () => {
-  return <div className={styles.backDrop}></div>;
+const Backdrop = ({ close }) => {
+  return <div className={styles.backDrop} onClick={close}></div>;
 };
 
 const Overlay = () => <div className={styles.overlay}></div>;
 
-const Modal = () => {
+const Modal = ({ show, closeModal }) => {
   return (
-    <Fragment>
-      {ReactDom.createPortal(
-        <Fragment>
-          <Backdrop /> <Overlay />
-        </Fragment>,
-        document.getElementById('modal')
-      )}
-    </Fragment>
+    show && (
+      <Fragment>
+        {ReactDom.createPortal(
+          <Fragment>
+            <Backdrop close={closeModal} /> <Overlay />
+          </Fragment>,
+          document.getElementById('modal')
+        )}
+      </Fragment>
+    )
   );
 };
 

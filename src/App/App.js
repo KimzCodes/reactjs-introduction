@@ -8,6 +8,7 @@ import './App.css';
 const App = () => {
   const [cardToggle, setCardToggle] = useState(true);
   const [filter, setFilter] = useState('');
+  const [showModal, setShowModal] = useState(false);
   const [state, setState] = useState([
     {
       id: 1,
@@ -68,14 +69,23 @@ const App = () => {
 
   return (
     <div className='mainContainer'>
-      <Modal />
+      <Modal show={showModal} closeModal={() => setShowModal(false)} />
       <h1>List of Data</h1>
-      <button
-        style={{ marginBottom: '20px' }}
-        onClick={() => setCardToggle(!cardToggle)}
-      >
-        {cardToggle ? 'Hide Names' : 'Show Names'}
-      </button>
+
+      <div style={{ display: 'flex', marginBottom: '10px' }}>
+        <button
+          style={{ marginRight: '20px' }}
+          onClick={() => setCardToggle(!cardToggle)}
+          className='button'
+        >
+          {cardToggle ? 'Hide Names' : 'Show Names'}
+        </button>
+
+        <button className='button' onClick={() => setShowModal(true)}>
+          New Record
+        </button>
+      </div>
+
       <div className={cardToggle ? 'show' : 'hide'}>
         <Filter filteration={filterNames} />
 
