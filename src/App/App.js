@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import CardList from '../components/CardList/CardList';
 import Filter from '../components/Filter/Filter';
+import Modal from '../components/Modal/Modal';
+
 import './App.css';
 
 const App = () => {
@@ -66,7 +68,8 @@ const App = () => {
 
   return (
     <div className='mainContainer'>
-      <h1>Boys Data</h1>
+      <Modal />
+      <h1>List of Data</h1>
       <button
         style={{ marginBottom: '20px' }}
         onClick={() => setCardToggle(!cardToggle)}
