@@ -19,3 +19,15 @@
   color: #495057;
   font-size: 15px;
 }
+
+.button {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 5px;
+}

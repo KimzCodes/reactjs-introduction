@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
+import AddUser from '../components/AddUser/Adduser';
 import CardList from '../components/CardList/CardList';
-import Filter from '../components/Filter/Filter';
+import FilterInput from '../components/FilterInput/FilterInput';
 import Modal from '../components/Modal/Modal';
+import Button from '../components/Layout/Button';
 
 import './App.css';
 
@@ -11,38 +13,42 @@ const App = () => {
   const [showModal, setShowModal] = useState(false);
   const [state, setState] = useState([
     {
-      id: 1,
+      id: 1000,
       name: 'kareem',
       age: 31,
-      adrress: 'hadyk el aharm',
+      address: 'hadyk el aharm',
       phone: '01010987123',
       type: 'boy',
     },
     {
-      id: 2,
+      id: 2000,
       name: 'farah',
       age: 24,
-      adrress: 'hadyk el aharm',
+      address: 'hadyk el aharm',
       phone: '01010987234',
       type: 'girl',
     },
     {
-      id: 3,
+      id: 3000,
       name: 'ahmed',
       age: 24,
-      adrress: 'hadyk el aharm',
+      address: 'hadyk el aharm',
       phone: '01010987234',
       type: 'boy',
     },
     {
-      id: 4,
+      id: 4000,
       name: 'mariam',
       age: 20,
-      adrress: 'fayesl',
+      address: 'fayesl',
       phone: '01010932123',
       type: 'girl',
     },
   ]);
+
+  const addNewUserHandller = (data) => {
+    setState((prevState) => setState([...prevState, data]));
+  };
 
   const deleteHandler = (e, selectedID) => {
     // const deleteOberation = state.filter((el, idx) => idx !== clickedIdx);
@@ -68,30 +74,34 @@ const App = () => {
   };
 
   return (
-    <div className='mainContainer'>
-      <Modal show={showModal} closeModal={() => setShowModal(false)} />
-      <h1>List of Data</h1>
+    <Fragment>
+      <div className='mainContainer'>
+        <h1>List of Data</h1>
+        <div style={{ display: 'flex', marginBottom: '10px' }}>
+          <Button
+            onClick={() => setCardToggle(!cardToggle)}
+            style={{ marginRight: '20px' }}
+          >
+            {cardToggle ? 'Hide Names' : 'Show Names'}
+          </Button>
 
-      <div style={{ display: 'flex', marginBottom: '10px' }}>
-        <button
-          style={{ marginRight: '20px' }}
-          onClick={() => setCardToggle(!cardToggle)}
-          className='button'
-        >
-          {cardToggle ? 'Hide Names' : 'Show Names'}
-        </button>
+          <Button onClick={() => setShowModal(true)}>New Record</Button>
+        </div>
 
-        <button className='button' onClick={() => setShowModal(true)}>
-          New Record
-        </button>
+        <div className={cardToggle ? 'show' : 'hide'}>
+          <FilterInput filteration={filterNames} />
+
+          <CardList namesList={namesHandler()} deleteFunc={deleteHandler} />
+        </div>
       </div>
 
-      <div className={cardToggle ? 'show' : 'hide'}>
-        <Filter filteration={filterNames} />
-
-        <CardList namesList={namesHandler()} deleteFunc={deleteHandler} />
-      </div>
-    </div>
+      <Modal show={showModal} closeModal={() => setShowModal(false)}>
+        <AddUser
+          addNewUserHandller={addNewUserHandller}
+          closeModal={() => setShowModal(false)}
+        />
+      </Modal>
+    </Fragment>
   );
 };
 
