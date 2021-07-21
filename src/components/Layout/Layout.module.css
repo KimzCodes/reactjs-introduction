@@ -1,0 +1,21 @@
+.control {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.control label {
+  font-weight: bold;
+  color: #212529;
+}
+
+.control input {
+  width: 70%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid gray;
+  color: #495057;
+  font-size: 15px;
+}

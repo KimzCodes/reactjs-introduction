@@ -19,7 +19,7 @@
 .overlay {
   z-index: 1500;
   position: absolute;
-  height: 500px;
+  padding: 20px;
   width: 30%;
   top: 50%;
   left: 50%;
